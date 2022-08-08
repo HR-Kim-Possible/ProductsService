@@ -15,33 +15,7 @@ const express = require('express'); // test - pretty sure I don't need this
 // could make function overheads for addityional parametrers offset and pagination (use key. value tho)
 // return as query stream
 
-// module.exports.getProduct = function async (req, res, next) {
-//   console.log('query id: ', req.query.ID);
-//   const product_id = req.query.ID;
-//   const queryString = models.getProducts_statement;
-//   const queryParams = [product_id];
-//   const queryName =  query_product;
-//   const queryObj = {};
-//   queryObj.text = queryString;
-//   queryObj.values = queryParams
-//   queryObj.name = queryName;
-//   n.clientQuery(queryObj, (err, result) => {
-//     if (err) {
-//       console.log('error killed command: ', err, 'parameters: ', queryObj);
-//       console.log('error making client query on client :', err.stack);
-//       res.status(500).send(err);
-//       // resolve(err);
-//       next();
-//     }
-//     console.log('result from clientQuery in controllers: ', result.rows)
-//     res.send(result.rows[0]);
-//     next();
-//   });
-//   pool.end();
-//   return clients;
-// }
-
-//return as query stream
+// I somehow deleted my other queries (and my getProduct query that includes features) and neither myself nor helpdesk has been able to get them back, although I did commit them, but my commits weren't pushing as well, so I need to re-write them
 
 module.exports = {
 
@@ -54,6 +28,7 @@ module.exports = {
         res.status(501);
       })
     }
+  }
 
     // In controllers should I be parsing the errors in controllers and either resolving them or returning different error messages based on the error?
      // How would I go about doing that?

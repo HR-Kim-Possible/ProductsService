@@ -68,13 +68,14 @@ const pool = new Pool(credentials);
 //(JSON_BUILD_OBJECT(feature, f.feature, "value", f.value) GROUP BY feature_id)
 //JSON_BUILD_OBJECT('url', ph.photo_url , thumbnail_url, ph.thumbnail_url) AS photos
       //GROUP BY photo_id)
-      SELECT p.product_id AS id, product_name AS "name", slogan, product_description AS "description", category, default_price, ARRAY_AGG (JSON_BUILD_OBJECT(feature, f.feature_name, "value", f.feature_value) GROUP BY feature_id) FROM products p LEFT JOIN features f USING(product_id) WHERE product_id = $1;
+//       SELECT p.product_id AS id, product_name AS "name", slogan, product_description AS "description", category, default_price, ARRAY_AGG(JSONB_BUILD_OBJECT('feature', feature_name, 'value', feature_value)) AS features FROM products p LEFT JOIN features f USING(product_id) WHERE product_id = 1 GROUP BY product_id;
+//       'feature' JSONB_BUILD_OBJECT('feature', feature_name, 'value', feature_value)
 
-select p.product_id AS id, product_name as "name", array_agg (f.feature_name, f.feature_value) group by product_id as features from products p left join features f using(product_id_ where product_id = 1;
+// select p.product_id AS id, product_name as "name", array_agg (SELECT f.feature_name, f.feature_value FROM features WHERE product_id = 1) group by product_id as features from products p left join features f using(product_id_ where product_id = 1;
 
 module.exports = {
   get_Product: function(id) {
-    const getProducts_statement = 'SELECT p.product_id AS id, product_name AS "name", slogan, product_description AS "description", category, default_price, ARRAY_AGG (f.feature_name, f.feature_value) features FROM products p LEFT JOIN features f USING(product_id) WHERE product_id = $1;'
+    const getProducts_statement = `SELECT p.product_id AS id, product_name AS "name", slogan, product_description AS "description", category, default_price, ARRAY_AGG(JSONB_BUILD_OBJECT('feature', feature_name, 'value', feature_value)) AS features FROM products p LEFT JOIN features f USING(product_id) WHERE product_id = $1 GROUP BY product_id;`
     id = Number(id);
     const  queryObj = {
       text: getProducts_statement,

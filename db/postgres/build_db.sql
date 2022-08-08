@@ -175,21 +175,35 @@ by putting f.product_id = $1 in subquery where clause => might be faster query t
 
 /* should I make a pivot table - prolly*/
 
-/*JSON_BUILD_OBJECT('product_id', CAST (p.product_id AS text), 'results', JSONB_AGG(
+/*
+  JSON_BUILD_OBJECT('product_id', CAST (product_id AS text), 'results', JSONB_AGG(
   SELECT
-    style_id,
-    style_name AS 'name',
-    CAST (orginal_price AS text),
-    CAST (sale_price AS text),
-    default_style AS 'default?',
-    JSONB_AGG(
+    CAST (product_id AS text),
+    ARR_AGG(
+      JSON_BUILD_OBJECT(
+        'style_id', style_id,
+        'name', style_name,
+        'original_price', CAST (orginal_price AS text),
+        'sale_price', CAST (sale_price AS text),
+        'default?', default_style,
+        'photos', ARRAY_AGG(
+          JSON_BUILD_OBJECT(
+            'thumbnail_url', thumbnail_url,
+            'url', photo_url,
+          )
+        )
+      )
+    )
+  AS results
+  FROM styles
+  INNER JOIN photos USING (style_id)
+  INNER JOIN skus USING (style_id)
+  WHERE product_id = 2;
+)
+
+SONB_AGG(
       JSON_BUILD_OBJECT('url', ph.photo_url , thumbnail_url, ph.thumbnail_url) AS photos
       GROUP BY photo_id)
-  FROM styles s
-  INNER JOIN photos ph USING (style_id)
-  INNER JOIN skus USING (style_id)
-  WHERE s.product_id = 2
-)
 FROM products p
 WHERE p.product_id = 2*/
 
@@ -377,4 +391,8 @@ queries should be less than 50 ms when run with explain analyze against database
 
 // test 3 queries in explain analyze and make sure under 50 ms, if not index
 locally stress test kasik*/
+WITH s AS (SELECT style_id, style_name, original_price, sale_price, default_style AS "default?", ARRAY_AGG(JSON_BUILD_OBJECT('thumbnail_url', thumbnail_url, 'url', photo_url)) AS photos FROM styles INNER JOIN photos USING(style_id) WHERE product_id = 2 GROUP BY style_id)
+SELECT product_id, s AS results;
 
+SELECT CAST (product_id AS text), ARRAY_AGG(JSON_BUILD_OBJECT('style_id', style_id, 'name', style_name, 'sale price', sale_price, 'original_price', original_price, 'default?', default_style, 'photos',
+ARRAY_AGG(JSON_BUILD_OBJECT('thumbnail_url', thumbnail_url, 'url', photo_url)))) AS results FROM styles INNER JOIN photos USING (style_id) INNER JOIN skus USING (style_id) WHERE product_id = 2 GROUP BY style_id;

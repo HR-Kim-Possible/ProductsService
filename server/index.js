@@ -1,4 +1,4 @@
-const db = require('../db/postgres/index.js');
+const db = require('../db/postgres/models.js');
 require('dotenv').config();
 const express = require('express');
 const routes = require('./routes.js');
