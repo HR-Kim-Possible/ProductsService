@@ -1,5 +1,24 @@
 {
   "dependencies": {
-    "pg": "^8.7.3"
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.1",
+    "expres": "^0.0.5",
+    "express": "^4.18.1",
+    "json": "^11.0.0",
+    "morgan": "^1.10.0",
+    "newrelic": "^9.0.0",
+    "pg": "^8.7.3",
+    "pg-monitor": "^1.4.1",
+    "pg-promise": "^10.11.1",
+    "pgp": "^0.1.0",
+    "router": "^1.3.7"
+  },
+  "scripts": {
+    "start": "npm run server server/index.js",
+    "database-build": "npm run ./db/prostgres/build_db.sql",
+    "server-db": "node ./db/postgres/models.js",
+    "server-dev": "webpack --mode development --watch & npx nodemon ./server/index.js",
+    "build": "webpack --config ./webpack.config.js",
+    "test": "npx jest"
   }
 }
