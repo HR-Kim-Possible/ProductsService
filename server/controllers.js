@@ -11,6 +11,19 @@ module.exports = {
     // could make function overheads for addityional parametrers offset and pagination (use key. value tho)
     // return as query stream?
 
+
+  getAllProducts: function(req, res) {
+    console.log('request.query in controller: ', req.query);
+    let { page, count } = req.query;
+    console.log('page in controllers: ', page);
+    return models.get_AllProducts(page, count)
+      .then(result => res.status(200).send(result.rows))
+      .catch((err) => {
+        console.log(err);
+        res.status(500);
+      })
+  },
+
   getProduct: function(req, res) {
     const { product_id } = req.params;
     return models.get_Product(product_id)
@@ -19,8 +32,22 @@ module.exports = {
         console.log(err);
         res.status(500);
       })
-    }
+  },
+
+  getStyles: function(req, res) {
+    console.log(req);
+    const { product_id } = req.params;
+    return models.get_Styles(product_id)
+      .then(result => res.status(200).send(result.rows[0]))
+      .catch((err) => {
+        console.log(err);
+        res.status(500);
+      })
   }
+
+}
+
+  // deal with if product_id is not a number or is outside of range in controller
 
   // I'LL ASK YOU THE BELOW IN OFFICE HOURS
 
