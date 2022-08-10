@@ -1,8 +1,6 @@
 /*const { pg } = require('pg');
 new client = pg.connect();*/
 
-/* PostgreSQL database*/
-
 /*CREATE TABLESPACES*/
 
 /*
@@ -13,7 +11,7 @@ CREATE TABLESPACE ts_archive
 LOCATION 'c:\<directory>'*/
 
 
-/*VIEW ACTIVE DATABASE CONNNECTIONS  (could wrap this in an if statement)*/
+/*VIEW ACTIVE DATABASE CONNNECTIONS*/
 
 /*SELECT
   *
@@ -40,10 +38,6 @@ WITH
   ENCODING = 'UTF8'
   TABLESPACE = ts_primary
   IS_TEMPLATE = true;*/
-
-/*should I create a new schema?*/
-
-
 
 /*client.end();*/
 
