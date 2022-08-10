@@ -1,4 +1,20 @@
 
+-- function insertData(data) {
+--  var pubKey = fs.readFileSync('public.key').toString();
+--  pg.connect(connectionString, function (err, client, done) {
+--   if (err) throw err;
+--   var sql = `INSERT INTO testuserscards(username, cc)
+--   VALUES ('${data.username}', pgp_pub_encrypt('${data.cc}', dearmor('${pubKey}')))`
+
+
+--   var query = client.query(sql);
+
+--   query.on('end', function () {
+--    client.end();
+--   });
+--  });
+-- }
+
 COPY products
 FROM '/Users/carolinepeake/HackReactor/SDC/Products_data/products.csv'
 WITH (
@@ -52,6 +68,8 @@ WITH (
   HEADER true,
   NULL "null"
 );
+
+
 
 
 

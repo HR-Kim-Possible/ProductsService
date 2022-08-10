@@ -1,3 +1,14 @@
+-- function createTable() {
+--  pg.connect(connectionString, function (err, client, done) {
+--   if (err) throw err;
+--   var query = client.query('CREATE TABLE IF NOT EXISTS testuserscards(card_id SERIAL PRIMARY KEY, username varchar(100), cc bytea)');
+
+--   query.on('end', function () {
+--    client.end();
+--   });
+--  });
+-- }
+
 /*DROP TABLE IF EXISTS products CASCADE;
 CREATE TABLE products (
   product_id integer PRIMARY KEY,
@@ -17,7 +28,7 @@ CREATE TABLE features (
   feature text NOT NULL,
   feature_value text NOT NULl,
   UNIQUE (product_id, feature, feature_value)
-);*/
+);
 
 /* might want to use the HSTORE data type instead for features (can convert to json or a set), or honestly just keep it in json*/
 
@@ -34,7 +45,6 @@ CREATE TABLE styles (
 
 
 /*DROP TABLE IF EXISTS photos CASCADE;
-
 CREATE TABLE photos (
   photo_id int PRIMARY KEY,
   style_id integer,
