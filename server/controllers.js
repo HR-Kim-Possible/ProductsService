@@ -1,6 +1,6 @@
 //is it better to break connection & credentials into separate module (i.e, ./db/postgres/index.js)?
 
-const models = require('../db/postgres/models.js');
+const models = require('./models.js');
 
 module.exports = {
 

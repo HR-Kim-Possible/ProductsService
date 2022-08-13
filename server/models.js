@@ -6,7 +6,7 @@ require('dotenv').config();
 const credentials = {
   user: process.env.PGUSER || 'postgres',
   host: process.env.PGHOST || 'localhost',
-  database: process.env.PGDATABASE || 'mydb',
+  database: process.env.PGDATABASE || 'productsdb',
   password: process.env.PGPASSWORD || null,
   port: process.env.PGPORT || 3211,
 };
@@ -57,7 +57,7 @@ module.exports = {
 
   get_Styles: function(id) {
     const getStyles_statement =
-     ` EXPLAIN ANALYZE SELECT
+     `SELECT
       CAST (s.product_id AS text),
       COALESCE (
         ARRAY_AGG(
