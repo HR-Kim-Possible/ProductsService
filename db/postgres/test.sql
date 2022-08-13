@@ -1,8 +1,4 @@
 
-
-103965
-11085
-
      /*EXPLAIN ANALYZE SELECT
       CAST (s.product_id AS text),
       COALESCE (
@@ -45,6 +41,26 @@
       FROM skus sk
       GROUP BY sk.style_id
     ) AS skObj ON skObj.style_id = s.style_id
-    WHERE s.product_id = 1
+    WHERE s.product_id = 65738
     GROUP BY s.product_id;*/
 
+
+ /*EXPLAIN ANALYZE SELECT product_id AS id, product_name AS "name", slogan, product_description AS "description", category, default_price FROM products ORDER BY id ASC LIMIT 5 OFFSET (0);*/
+
+   /*EXPLAIN ANALYZE SELECT
+      p.product_id AS id,
+      product_name AS "name",
+      slogan,
+      product_description AS "description",
+      category,
+      default_price,
+      ARRAY_AGG(
+        JSONB_BUILD_OBJECT(
+          'feature', feature_name,
+          'value', feature_value
+        )
+      ) AS features
+    FROM products p
+    LEFT JOIN features f USING(product_id)
+    WHERE product_id = 65738
+    GROUP BY product_id;*/
