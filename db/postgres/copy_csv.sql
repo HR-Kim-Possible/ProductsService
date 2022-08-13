@@ -1,5 +1,5 @@
 
--- function insertData(data) {
+/*-- function insertData(data) {
 --  var pubKey = fs.readFileSync('public.key').toString();
 --  pg.connect(connectionString, function (err, client, done) {
 --   if (err) throw err;
@@ -13,7 +13,7 @@
 --    client.end();
 --   });
 --  });
--- }
+-- }*/
 
 COPY products
 FROM '/Users/carolinepeake/HackReactor/SDC/Products_data/products.csv'

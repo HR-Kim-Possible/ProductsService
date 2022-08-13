@@ -1,4 +1,4 @@
--- function createTable() {
+/*-- function createTable() {
 --  pg.connect(connectionString, function (err, client, done) {
 --   if (err) throw err;
 --   var query = client.query('CREATE TABLE IF NOT EXISTS testuserscards(card_id SERIAL PRIMARY KEY, username varchar(100), cc bytea)');
@@ -7,9 +7,9 @@
 --    client.end();
 --   });
 --  });
--- }
+-- }*/
 
-/*DROP TABLE IF EXISTS products CASCADE;
+DROP TABLE IF EXISTS products CASCADE;
 CREATE TABLE products (
   product_id integer PRIMARY KEY,
   product_name text NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE features (
 
 /* might want to use the HSTORE data type instead for features (can convert to json or a set), or honestly just keep it in json*/
 
-/*DROP TABLE IF EXISTS styles CASCADE;
+DROP TABLE IF EXISTS styles CASCADE;
 CREATE TABLE styles (
   style_id integer PRIMARY KEY,
   product_id integer NOT NULL REFERENCES products,
@@ -44,7 +44,7 @@ CREATE TABLE styles (
 );
 
 
-/*DROP TABLE IF EXISTS photos CASCADE;
+DROP TABLE IF EXISTS photos CASCADE;
 CREATE TABLE photos (
   photo_id int PRIMARY KEY,
   style_id integer,
@@ -53,7 +53,7 @@ CREATE TABLE photos (
 );
 
 
-/*DROP TABLE IF EXISTS skus CASCADE;
+DROP TABLE IF EXISTS skus CASCADE;
 CREATE TABLE skus (
   sku integer PRIMARY KEY,
   style_id integer NOT NULL,
@@ -61,9 +61,10 @@ CREATE TABLE skus (
   quantity integer DEFAULT 0
 );
 
-/*DROP TABLE IF EXISTS related CASCADE;
+DROP TABLE IF EXISTS related CASCADE;
 CREATE TABLE related (
   related_product_id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   product_id integer REFERENCES products NOT NULL,
   related_id integer NOT NULL
 );
+

@@ -31,13 +31,13 @@ WHERE
 
 /* CREATE DATABASE */
 
-/*DROP DATABASE IF EXISTS productsdb;
+DROP DATABASE IF EXISTS productsdb;
 CREATE DATABASE productsdb
 WITH
   OWNER = postgres
   ENCODING = 'UTF8'
   TABLESPACE = ts_primary
-  IS_TEMPLATE = true;*/
+  IS_TEMPLATE = true;
 
 /*client.end();*/
 

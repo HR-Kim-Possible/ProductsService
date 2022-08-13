@@ -111,3 +111,35 @@ ALTER COLUMN original_price SET DATA TYPE varchar(13),*/
 // maybe pool the request with the products columns for each of the related product?
 // or could make a separate query for the info for related products, because it's not as much?  though this might not jive with the client
 */
+
+delete from photos where style_id = 5750;
+delete from photos where style_id = 5751;
+delete from photos where style_id = 9450;
+delete from photos where style_id = 9451;
+delete from photos where style_id = 9452;
+delete from photos where style_id = 11215;
+delete from photos where style_id = 11216;
+delete from photos where style_id = 14339;
+delete from photos where style_id = 14340;
+
+ALTER TABLE photos
+ADD CONSTRAINT style_id
+FOREIGN KEY (style_id)
+REFERENCES styles(style_id)
+ON DELETE CASCADE;
+
+delete from skus where style_id = 5750;
+delete from skus where style_id = 5751;
+delete from skus where style_id = 9450;
+delete from skus where style_id = 9451;
+delete from skus where style_id = 9452;
+delete from skus where style_id = 11215;
+delete from skus where style_id = 11216;
+delete from skus where style_id = 14339;
+delete from skus where style_id = 14340;
+
+ALTER TABLE skus
+ADD CONSTRAINT style_id
+FOREIGN KEY (style_id)
+REFERENCES styles(style_id)
+ON DELETE CASCADE;
