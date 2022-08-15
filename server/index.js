@@ -13,10 +13,8 @@ app.use(morgan('tiny'));
 
 app.use('/', routes);
 
-const port = 6246;
-
-app.listen(port, () => {
-  console.log(`listening at http://localhost:${port}`);
+app.listen(process.env.EXPORT, () => {
+  console.log(`listening at http://localhost:${process.env.EXPORT}`);
 });
 
 

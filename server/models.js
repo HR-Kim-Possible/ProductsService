@@ -4,11 +4,11 @@ const { Pool } = require('pg');
 require('dotenv').config();
 
 const credentials = {
-  user: process.env.PGUSER || 'postgres',
-  host: process.env.PGHOST || 'localhost',
-  database: process.env.PGDATABASE || 'productsdb',
-  password: process.env.PGPASSWORD || null,
-  port: process.env.PGPORT || 3211,
+  user: process.env.PGUSER,
+  host: process.env.PGHOST,
+  database: process.env.PGDATABASE,
+  password: process.env.PGPASSWORD,
+  port: process.env.PGPORT,
 };
 
 // I think he credentials above are using the default values set in .env, but I need them to use my environment values - will config in AWS for deployment
