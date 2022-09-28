@@ -15,6 +15,11 @@ const credentials = {
 
 const pool = new Pool(credentials);
 
+// I think if you wanted to break this down per MVC, you would have the connection in one module
+// and export the connection instance
+// and then have the query statements in a Product models module? and the functions here in the products services module?
+
+
 module.exports = {
 
   get_AllProducts: function(page = 1, count =5) {
